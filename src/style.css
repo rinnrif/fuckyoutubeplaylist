@@ -1,0 +1,90 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+body {
+    /* background-color: beige; */
+}
+
+button {
+    margin-top: 1em;
+    margin-left: 1em;
+    height: 70px;
+    width: 100px;
+}
+
+.queueboard {
+    background-color: white;
+    padding: 2px;
+    border: 1px solid black;
+    width: 640px;
+    height: 390px;
+    white-space: nowrap;
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+.queue {
+    cursor: pointer;
+}
+
+.queue:hover {
+    background-color: #f0f0f0;
+}
+
+.controlpanel {
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+}
+
+.timer {
+    font-size: 120px;
+}
+
+#expected {
+    /* margin-left: 1em; */
+    display: inline;
+}
+
+.checkarea {
+    margin-top: 2em;
+    margin-left: 2em;
+}
+
+.timerarea {
+    text-align: center;
+}
+
+button {
+    font-size: large;
+}
+
+.inputtime {
+    margin-top: 1em;
+    margin-left: 1em;
+}
+
+#inputtime {
+    width: 50px;
+    font-size: 40px;
+}
+
+textarea {
+    width: 640px;
+    height: 390px;
+    padding: 0;
+    overflow: auto;
+}
+
+iframe {
+    width: 640px;
+    height: 390px;
+    border: none;
+}

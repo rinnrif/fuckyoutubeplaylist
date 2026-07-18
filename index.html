@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<head>
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="stylesheet" href="./src/style.css">
+    <title>fuck youtube playlist</title>
+</head>
+
+<body>
+
+    <h1>fuck youtube playlist <img src="./src/images/tomnook.webp" width="50px" /> <img src="./src/images/kc.jpg" width="40px" /> <img
+            src="./src/images/kirby.png" width="40px" /> <img src="./src/images/pikachu.png" width="30px" /> <img src="./src/images/m9.png" width="50px" />
+            <img src="./src/images/xmastree.png" width="50px" />
+    </h1>
+    <div class="container">
+        <div id="player"></div>
+        <div class="queueboard" id="queue"></div>
+    </div>
+    <div class="container">
+        <textarea id="youtube-urls" type="text" placeholder="Enter url here..."></textarea>
+        <div class="item">
+            <div class="controlpanel">
+                <button type="button" onclick="changePlayVideo(-1)">Previous</button>
+                <button type="button" onclick="changePlayVideo(1)">Next</button>
+                <button type="button" onclick="reloadPlaylist()">Reload</button>
+                <div class="checkarea">
+                    <input type="checkbox" id="shuffle" name="shuffle" value="yes">
+                    <label for="shuffle">Shuffle</label>
+                    <br>
+                    <input type="checkbox" id="repeat" name="repeat" value="yes">
+                    <label for="repeat">Repeat</label>
+                </div>
+            </div>
+            <div class="timerarea">
+
+            <div class="inputtime">
+                Minutes: 
+                <input id="inputtime" type="text" onclick="select()" value="25" >
+            </div>
+            <div class="timer" id="timer">25:00</div>
+                Expected: 
+                <div id="expected">00:00</div>
+            <!-- <img src="bomb_christmas.png" /> -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
