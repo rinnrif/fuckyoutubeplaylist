@@ -257,15 +257,14 @@ const playstate = {
 }
 
 function restoreUrls(object) {
-    const textarea = document.getElementById("youtube-urls");
     let str = ""
     for (const data of object) {
         if (data.id) {
             str += `https://www.youtube.com/watch?v=${data.id}\n`
         }
     }
-    console.log(str)
-    textarea.value = str
+    const doc = editor.getDoc()
+    doc.setValue(str)
 }
 
 function restorePlaylist(object) {
