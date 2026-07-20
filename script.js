@@ -317,3 +317,16 @@ async function getYouTubeTitle(videoid) {
         return null;
     }
 }
+
+// code block
+var codeblock = document.getElementById('youtube-urls');
+var editor = CodeMirror.fromTextArea(codeblock, {
+    lineNumbers: true,
+    mode: 'text/x-perl',
+    theme: 'default',
+});
+
+editor.setSize(640, 390)
+
+
+
