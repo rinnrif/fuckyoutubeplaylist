@@ -26,6 +26,12 @@ button {
     overflow-y: scroll;
 }
 
+.small {
+    height: 20px;
+    width: 60px;
+    font-size: 12px;
+}
+
 .queue {
     cursor: pointer;
 }

@@ -42,7 +42,6 @@ function stopVideo() {
 function PlayAudio(filename) {
     var audio = new Audio(filename).play();
 }
-var currentPlayIndex;
 
 //  fire
 document.body.onkeyup = function (e) {
@@ -58,7 +57,7 @@ window.addEventListener('load', (event) => {
     restorePlaylist(jsondata)
     restoreUrls(jsondata)
     inputtime.value = 25
-    expectedtime.innerText =  calcExpected(inputtime.value)
+    expectedtime.innerText = calcExpected(inputtime.value)
 });
 
 // timer
@@ -86,6 +85,33 @@ inputtime.addEventListener('keypress', (e) => {
     }
 })
 
+document.getElementById("delete-playlist").addEventListener("click", () => {
+    const stored = JSON.parse(localStorage.getItem("songs") || "[]");
+    targetindex = playstate.currentindex
+    target = stored[playstate.currentindex]
+
+    const queueboard = document.getElementById("queue");
+    let index = 0
+
+    // delete from queueboard
+    for (const queue of queueboard.childNodes) {
+        if (index == targetindex) {
+            console.log(queue)
+            // queue.remove()
+        }
+        index++
+    }
+
+    // add element
+    // const newChild = document.createElement("div");
+    // newChild.setAttribute("class", "queue");
+    // newChild.videoid = extractid;
+    // newChild.videoindex = index;
+    // newChild.textContent = `${index} - ${dict.title}`;
+    // newChild.addEventListener("click", changePlayVideo, false);
+    // queueboard.appendChild(newChild);
+});
+
 function resettimer(intervalid, miliseconds) {
     clearInterval(intervalid)
     if (!miliseconds) {
@@ -98,7 +124,7 @@ function resettimer(intervalid, miliseconds) {
 
 function calcExpected(minutes) {
     let d = new Date()
-    var newDateObj = new Date(d.getTime() + minutes*60000);
+    var newDateObj = new Date(d.getTime() + minutes * 60000);
 
     return newDateObj.toTimeString().split(' ')[0].slice(0, 5)
 }
@@ -170,48 +196,52 @@ function updateTimeString(element, seconds) {
 }
 
 async function reloadPlaylist() {
-
-    const ids = document.getElementById("youtube-urls").value
+    const ids = editor.getValue();
     const playlistUrls = ids.split(/\r?\n/);
 
     const queueboard = document.getElementById("queue");
+
     queueboard.replaceChildren();
 
-    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const stored = JSON.parse(localStorage.getItem("songs") || "[]");
+    // arr to map
+    const titleById = new Map(stored.map(x => [x.id, x.title]));
 
-    store = []
-    var index = 1
+    store = [];
+    let index = 1;
+
     for (const url of playlistUrls) {
-        if (url == "") {
-            continue
-        }
+        if (url === "") continue;
 
         // extract video id
         const m = url.match(/=(.*?)(?=&|;|$)/);
         const extractid = m?.[1] ?? "";
+        if (!extractid) continue;
 
-        // mapping
-        const dict = {}
+        const dict = { id: extractid };
 
-        const title = await getYouTubeTitle(extractid)
-        dict["id"] = extractid
-        dict["title"] = title
-        store.push(dict)
+        if (titleById.has(extractid)) {
+            dict.title = titleById.get(extractid);
+        } else {
+            dict.title = await getYouTubeTitle(extractid);
+        }
+
+        store.push(dict);
 
         // add element
         const newChild = document.createElement("div");
         newChild.setAttribute("class", "queue");
-        newChild.videoid = extractid
-        newChild.videoindex = index
-        newChild.textContent = `${index} - ${title}`
-        newChild.addEventListener('click', changePlayVideo, false);
+        newChild.videoid = extractid;
+        newChild.videoindex = index;
+        newChild.textContent = `${index} - ${dict.title}`;
+        newChild.addEventListener("click", changePlayVideo, false);
         queueboard.appendChild(newChild);
-        index++
-        await sleep(100);
+
+        index++;
     }
 
-    playstate.updateSize(index - 1)
-    console.log(playstate.currentSize)
+    playstate.updateSize(index - 1);
+    console.log(playstate.currentSize);
     localStorage.setItem("songs", JSON.stringify(store));
 }
 
@@ -294,6 +324,8 @@ function changePlayVideo(event) {
     player.loadVideoByUrl(`http://www.youtube.com/v/${videoid}?version=3`, 0)
     playstate.updateIndex(index)
 }
+
+
 
 function clearAllStyle() {
     const queueboard = document.getElementById("queue");
