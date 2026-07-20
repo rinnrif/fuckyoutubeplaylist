@@ -353,6 +353,7 @@ async function getYouTubeTitle(videoid) {
 var codeblock = document.getElementById('youtube-urls');
 var editor = CodeMirror.fromTextArea(codeblock, {
     lineNumbers: true,
+    styleActiveLine: true,
     mode: 'text/x-perl',
     theme: 'default',
 });
