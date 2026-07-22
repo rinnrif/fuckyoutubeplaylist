@@ -3,6 +3,11 @@
     flex-wrap: wrap;
 }
 
+a {
+    color: black;
+    text-decoration: none;
+}
+
 
 body {
     /* background-color: beige; */
