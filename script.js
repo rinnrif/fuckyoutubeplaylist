@@ -319,7 +319,7 @@ function changePlayVideo(event) {
 
     videoid = target.videoid
 
-    target.style.backgroundColor = "#f0f0f0"
+    target.style.backgroundColor = "#181818"
     player.loadVideoByUrl(`http://www.youtube.com/v/${videoid}?version=3`, 0)
     playstate.updateIndex(index)
 }
@@ -355,7 +355,7 @@ var editor = CodeMirror.fromTextArea(codeblock, {
     lineNumbers: true,
     styleActiveLine: true,
     mode: 'text/x-perl',
-    theme: 'default',
+    theme: '3024-night',
 });
 
 editor.setSize(640, 390)

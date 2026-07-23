@@ -1,31 +1,47 @@
+@font-face {
+    font-family: whoaskssatan;
+    src: url(../src/fonts/who_asks_satan.ttf);
+}
+
+h1 {
+    font-family: whoaskssatan;
+    font-size: 50px;
+}
+
+body {
+    background-color: rgb(20, 6, 6);
+    color: rgb(141, 45, 45);
+}
+
+
 .container {
     display: flex;
     flex-wrap: wrap;
 }
 
 a {
-    color: black;
     text-decoration: none;
+    color: white;
 }
 
-
-body {
-    /* background-color: beige; */
-}
 
 button {
+    /* font-family: whoaskssatan; */
     margin-top: 1em;
+    /* font-size: 3rem !important; */
     margin-left: 1em;
     height: 70px;
     width: 100px;
+    background-color: rgb(48, 10, 10);
+    color: white;
 }
 
 .queueboard {
-    background-color: white;
+    background-color: rgb(15, 5, 5);
     padding: 2px;
     border: 1px solid black;
     width: 640px;
-    height: 390px;
+    max-height: 390px;
     white-space: nowrap;
     overflow: auto;
     overflow-y: scroll;
@@ -42,7 +58,7 @@ button {
 }
 
 .queue:hover {
-    background-color: #f0f0f0;
+    background-color: #181818;
 }
 
 .controlpanel {
@@ -56,6 +72,7 @@ button {
 }
 
 .timer {
+    color: white;
     font-size: 120px;
 }
 
